@@ -1,24 +1,23 @@
-name: Compilar proyecto en Windows
-
+name: Compilar código C++ con ncurses en Windows
 on:
   push:
     branches:
       - main
-
 jobs:
-  build-windows:
+  build:
     runs-on: windows-latest
     steps:
-      - name: Checkout código
-        uses: actions/checkout@v3
-
-      - name: Instalar Chocolatey
+      - name: Instalar ncurses
         run: |
-          Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-
-      - name: Instalar dependencias (ejemplo con Chocolatey)
+          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+          Invoke-WebRequest https://github.com/msys2/msys2/releases/download/v6.0/msys2-installer.exe -OutFile msys2-installer.exe
+          Start-Process msys2-installer.exe -ArgumentList "/VERYSILENT /NORESTART /SP-"
+      - name: Clonar el repositorio
+        uses: actions/checkout@v2
+      - name: Compilar el código
         run: |
-          choco install -y sqlite ncurses
-
-      - name: Ejecutar make para compilar
-        run: make
+          cd ./build
+          mkdir -p ./build
+          cd ./build
+          cmake .. -G "MinGW Makefiles"
+          make -f ../makefile
