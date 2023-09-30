@@ -1,0 +1,24 @@
+name: Compilar proyecto en Windows
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+
+      - name: Instalar Chocolatey
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+      - name: Instalar dependencias (ejemplo con Chocolatey)
+        run: |
+          choco install -y sqlite ncurses
+
+      - name: Ejecutar make para compilar
+        run: make
