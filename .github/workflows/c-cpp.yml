@@ -18,7 +18,8 @@ jobs:
           install: >-
             ncurses
             mingw-w64-ucrt-x86_64-gcc
+          check-installed: true
 
       - name: Compilar el proyecto
         run: |
-          make 
+          make -f ./makefile
