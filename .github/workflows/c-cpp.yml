@@ -1,23 +1,18 @@
 name: Compilar código C++ con ncurses en Windows
-on:
-  push:
-    branches:
-      - main
+on: [push]
 jobs:
-  build:
+  msys2-ucrt64:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
-      - name: Instalar ncurses
-        run: |
-          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-          Invoke-WebRequest https://github.com/msys2/msys2/releases/download/v6.0/msys2-installer.exe -OutFile msys2-installer.exe
-          Start-Process msys2-installer.exe -ArgumentList "/VERYSILENT /NORESTART /SP-"
-      - name: Clonar el repositorio
-        uses: actions/checkout@v2
-      - name: Compilar el código
-        run: |
-          cd ./build
-          mkdir -p ./build
-          cd ./build
-          cmake .. -G "MinGW Makefiles"
-          make -f ../makefile
+      - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            ncurses
+            mingw-w64-ucrt-x86_64-gcc
+      
