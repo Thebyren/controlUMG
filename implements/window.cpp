@@ -2,13 +2,14 @@
 #include <ncurses.h>
 #include <strings.h>
 
-void input()
-{
-}
-
-void imprimir(WINDOW *win, int xMAX, int yMAX)
-{
-    box(win, 0, 0);
+void continuar(WINDOW*win, int y, int x, std::string msg){
+    init_pair(2, COLOR_BLACK, COLOR_MAGENTA);
+    box(win, 0,0);
+    wattron(win, COLOR_PAIR(2));
+    mvwprintw(win,y-1,(x/2)-(msg.length()/2),msg.c_str());
+    wattroff(win, COLOR_PAIR(2));
+    wrefresh(win);
+    wgetch(win);
 }
 
 std::string input(WINDOW *win, int y, int x, const std::string &message)

@@ -18,11 +18,8 @@ bool SQLiteManager::openDataBase(const std::string &nombreDB)
         std::cout << rc << " true" << std::endl;
         return true;
     }
-    else
-    {
-        std::cerr << rc << " false" << std::endl;
-        return false;
-    }
+    std::cerr << rc << " false" << std::endl;
+    return false;
 }
 
 void SQLiteManager::closeDataBase()
