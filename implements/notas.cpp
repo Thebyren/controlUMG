@@ -1,21 +1,17 @@
 #include"../headers/manager.h"
-bool (*notas[])() = {
-    &registros::nota::nuevo,
-    &registros::nota::eliminar,
-    &registros::nota::imprimir};
 
-bool registros::nota::nuevo()
+void registros::nota::nuevo(WINDOW * win, int x, int y)
 {
-    return true;
+    
 
 }
-bool registros::nota::eliminar()
+void registros::nota::eliminar(WINDOW * win, int x, int y)
 {
-    return true;
+    
     
 }
 
-bool registros::nota::imprimir()
+void registros::nota::imprimir(WINDOW * win, int x, int y)
 {
-    return true;
+    
 }

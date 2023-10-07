@@ -1,22 +1,16 @@
 #include"../headers/manager.h"
-bool (*cursos[])() = {
-    &registros::curso::nuevo,
-    &registros::curso::eliminar,
-    &registros::curso::imprimir};
 
-
-bool registros::curso::nuevo()
+void registros::curso::nuevo(WINDOW * win, int y, int x)
 {
-    return true;
-
+    
 }
-bool registros::curso::eliminar()
+void registros::curso::eliminar(WINDOW * win, int y, int x)
 {
-    return true;
+    
     
 }
 
-bool registros::curso::imprimir()
+void registros::curso::imprimir(WINDOW * win, int y, int x)
 {
-    return true;
+    
 }

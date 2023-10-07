@@ -40,7 +40,95 @@ void SQLiteManager::querryDataBase(const std::string &querry)
     {
         std::cerr << "Error executing query: " << errorMessage << std::endl;
         sqlite3_free(errorMessage); // Liberar memoria del mensaje de error
+        std::cerr<<"error en la consulta";
     }
+}
+
+std::string SQLiteManager::newAlumno(Alumno& user)
+{
+    std::string consulta = "INSERT INTO Alumnos (carnet, nombre, apellido, fechaNacimiento, edad, direccion, telefono, correoElectronico, profesionDiversificado, fechaGraduacion) VALUES (";
+    consulta += "'" + user.carnet + "', ";
+    consulta += "'" + user.nombre + "', ";
+    consulta += "'" + user.apellido + "', ";
+    consulta += "'" + user.fechaNacimiento + "', ";
+    consulta += std::to_string(user.edad) + ", ";
+    consulta += "'" + user.direccion + "', ";
+    consulta += std::to_string(user.telefono) + ", ";
+    consulta += "'" + user.correoElectronico + "', ";
+    consulta += "'" + user.profesionDiversificado + "', ";
+    consulta += std::to_string(user.fechaGraduacion) + ");";
+    return consulta;
+}
+std::string SQLiteManager::delAlumno(std::string &carnet){
+    std::string consulta = "DELETE FROM Alumnos WHERE carnet = '"+carnet+"' ;";
+    return consulta;
+}
+
+std::string SQLiteManager::delCatedratico(std::string &carnet){
+    std::string consulta = "DELETE FROM catedraticos WHERE codigoCatedratico = '"+carnet+"' ;";
+    return consulta;
+}
+
+
+std::string SQLiteManager::newCurso(const Curso& curso)
+{
+    std::string consulta = "INSERT INTO cursos (codigoCurso, nombre, creditos, horario) VALUES (";
+    consulta += "'" + curso.codigoCurso + "', ";
+    consulta += "'" + curso.nombre + "', ";
+    consulta += std::to_string(curso.creditos) + ", ";
+    consulta += "'" + curso.horario + "');";
+    return consulta;
+}
+
+std::string SQLiteManager::newCatedratico(const Catedratico& catedratico)
+{
+    std::string consulta = "INSERT INTO catedraticos (codigoCatedratico, nombre, apellido, direccion, profesion, telefono, correoElectronico) VALUES (";
+    consulta += "'" + catedratico.codigoCatedratico + "', ";
+    consulta += "'" + catedratico.nombre + "', ";
+    consulta += "'" + catedratico.apellido + "', ";
+    consulta += "'" + catedratico.direccion + "', ";
+    consulta += "'" + catedratico.profesion + "', ";
+    consulta += std::to_string(catedratico.telefono) + ", ";
+    consulta += "'" + catedratico.correoElectronico + "');";
+    return consulta;
+}
+
+std::string SQLiteManager::newNota(const Nota& nota)
+{
+    std::string consulta = "INSERT INTO notas (carnet, codigoCurso, codigoCatedratico, punteoPrimerParcial, punteoSegundoParcial, zona, examenFinal, examenRetrasada) VALUES (";
+    consulta += "'" + nota.carnet + "', ";
+    consulta += "'" + nota.codigoCurso + "', ";
+    consulta += "'" + nota.codigoCatedratico + "', ";
+    consulta += std::to_string(nota.punteoPrimerParcial) + ", ";
+    consulta += std::to_string(nota.punteoSegundoParcial) + ", ";
+    consulta += std::to_string(nota.zona) + ", ";
+    consulta += std::to_string(nota.examenFinal) + ", ";
+    consulta += std::to_string(nota.examenRetrasada) + ");";
+    return consulta;
+}
+
+std::string SQLiteManager::newPago(const Pago& pago)
+{
+    std::string consulta = "INSERT INTO pagos (codigoAlumno, codigoPago, nombrePago, facultad, cuotaPago) VALUES (";
+    consulta += "'" + pago.codigoAlumno + "', ";
+    consulta += "'" + pago.codigoPago + "', ";
+    consulta += "'" + pago.nombrePago + "', ";
+    consulta += "'" + pago.facultad + "', ";
+    consulta += std::to_string(pago.cuotaPago) + ");";
+    return consulta;
+}
+
+// Función para generar una consulta SQL para insertar un registro de boleta
+std::string SQLiteManager::newBoleta (const Boleta& boleta) {
+    std::string consulta = "INSERT INTO boleta (fecha, carnet, nombre, semestre, campus, bancosParaPagar, totalBoleta) VALUES (";
+    consulta += "'" + boleta.fecha + "', ";
+    consulta += "'" + boleta.carnet + "', ";
+    consulta += "'" + boleta.nombre + "', ";
+    consulta += "'" + boleta.semestre + "', ";
+    consulta += "'" + boleta.campus + "', ";
+    consulta += "'" + boleta.banco + "', ";
+    consulta += std::to_string(boleta.totalBoleta) + ");";
+    return consulta;
 }
 /*
 std::vector<dataUser> SQLiteManager::obtenerRegistrosUsuarios()

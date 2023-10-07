@@ -4,6 +4,11 @@
 #include <string.h>
 #include <iostream>
 #include <ncurses.h>
+#include <algorithm>
+#include <thread>
+#include <chrono>
+#include "managerData.h"
+#include "window.h"
 // clases principales
 class registros
 {
@@ -11,44 +16,44 @@ public:
     class estudiante
     {
     public:
-        static bool nuevo();
-        static bool eliminar();
-        static bool imprimir();
+        static void nuevo(WINDOW * win, int y, int x);
+        static void eliminar(WINDOW * win, int y, int x);
+        static void imprimir(WINDOW * win, int y, int x);
     };
     class catedratico
     {
     public:
-        static bool nuevo();
-        static bool eliminar();
-        static bool imprimir();
+        static void nuevo(WINDOW * win, int y, int x);
+        static void eliminar(WINDOW * win, int y, int x);
+        static void imprimir(WINDOW * win, int y, int x);
     };
     class curso
     {
     public:
-        static bool nuevo();
-        static bool eliminar();
-        static bool imprimir();
+        static void nuevo(WINDOW * win, int y, int x);
+        static void eliminar(WINDOW * win, int y, int x);
+        static void imprimir(WINDOW * win, int y, int x);
     };
     class nota
     {
     public:
-        static bool nuevo();
-        static bool eliminar();
-        static bool imprimir();
+        static void nuevo(WINDOW * win, int y, int x);
+        static void eliminar(WINDOW * win, int y, int x);
+        static void imprimir(WINDOW * win, int y, int x);
     };
     class pago
     {
     public:
-        static bool nuevo();
-        static bool eliminar();
-        static bool imprimir();
+        static void nuevo(WINDOW * win, int y, int x);
+        static void eliminar(WINDOW * win, int y, int x);
+        static void imprimir(WINDOW * win, int y, int x);
     };
     class boleta
     {
     public:
-        static bool nuevo();
-        static bool eliminar();
-        static bool imprimir();
+        static void nuevo(WINDOW * win, int y, int x);
+        static void eliminar(WINDOW * win, int y, int x);
+        static void imprimir(WINDOW * win, int y, int x);
     };
 };
 class administracion
@@ -67,22 +72,14 @@ public:
 };
 extern void (*menus[])(WINDOW*win, int y, int x);
 // arrays de punteros
-extern bool (*estudiantes[])();
+extern void (*impresiones[])(WINDOW*win, int y, int x);
 
 // Para Catedráticos
-extern bool (*catedraticos[])();
+extern void (*eliminaciones[])(WINDOW*win, int y, int x);
 
 // Para Cursos
-extern bool (*cursos[])();
+extern void (*ingresos[])(WINDOW*win, int y, int x);
 
-// Para Notas
-extern bool (*notas[])();
-
-// Para Pagos
-extern bool (*pagos[])();
-
-// Para Boletas
-extern bool (*boletas[])();
 
 extern void (*funAdministracion[])();
 

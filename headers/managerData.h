@@ -17,8 +17,24 @@ struct Alumno {
     int telefono;
     std::string correoElectronico;
     std::string profesionDiversificado;
-    int añoGraduacion;
+    int fechaGraduacion = 23;
 };
+struct facultad{
+    std::string nombre;
+    int codigo;
+};
+
+// Struct para datos de boleta de un alumno
+struct Boleta {
+    std::string fecha;
+    std::string carnet;
+    std::string nombre;
+    std::string semestre;
+    std::string campus;
+    std::string banco; // Agrega el listado de bancos aquí
+    float totalBoleta;
+};
+
 
 // Datos para ingreso de cursos
 struct Curso {
@@ -42,7 +58,7 @@ struct Catedratico {
 
 // Datos para ingreso de notas
 struct Nota {
-    std::string carnet;
+    std::string carnet = "123"; 
     std::string codigoCurso;
     std::string codigoCatedratico;
     float punteoPrimerParcial;
@@ -77,6 +93,19 @@ public:
     void closeDataBase();
 
     void querryDataBase(const std::string &texto);
+    std::string newAlumno(Alumno &a);
+    std::string delAlumno(std::string &id);
+    std::string getAlumno(int &id);
+
+    std::string newPago(const Pago &a);
+    
+    std::string newCatedratico(const Catedratico &a);
+    std::string delCatedratico(std::string &id);
+
+    std::string newNota(const Nota &a);
+    std::string newCurso(const Curso &a);
+    std::string newBoleta(const  Boleta&a);
+
     
 };
 #endif /* managerData */

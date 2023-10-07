@@ -28,12 +28,9 @@ std::vector<std::string> inicio = {
     " create new user ",
     " salir "};
 std::vector<std::string> dataAdmin = {
-    " datos de boleta de inscripcion ",
-    " alumnos ",
-    " cursos",
-    " catedraticos ",
-    " notas ",
-    " pagos",
+    " ingresar datos ",
+    " eliminar datos ",
+    " imprimir datos ",
     " salir "};
 
 //banner
@@ -68,7 +65,9 @@ std::vector<std::string> banner = {
 "               ++###.#*##.#==*######-+#.+#.*-*##+*              ",
 "                 *+*#*#++.##.#*=*#+.=:#:#.###++                 ",
 "                    *++*###+=#=--#-+**###*+**                   ",
-"                         *++++++++++++*%                        "};
+"                         *++++++++++++*%                        ",
+"                            ********#                           "
+};
 
 // funciones
 void start()
@@ -98,13 +97,15 @@ bool managment(WINDOW *win, int y, int x)
     {
         printMenuSimple menu(win, dataAdmin, y, x);
         size_t n = menu.getSelected();
-        //(*elecciones[menu.getSelected()])();
-        if ( n == dataAdmin.size() - 1)
+        
+        if ( n == dataAdmin.size() -1)
         {
             // opcion para salir del programa
             admin = false;
             clear();
             return false;
+        }else{
+        (*menus[menu.getSelected()])(win, y,x);
         }
     }
     return false;

@@ -49,28 +49,28 @@ printMenu::printMenu(WINDOW *win, const std::vector<std::string> &choices, int y
         std::string integrante4 = "luis alejandro jimenes medrano";
         std::string integrante5 = "byron rene pastor flores";
         std::string integrante6 = "kevin emanol medrano castillo";
-        mvwprintw(creditos, 5, -3 + (xMAX / 2) - (integrante1.size() / 2), integrante1.c_str());
-        mvwprintw(creditos, 6, -3 + (xMAX / 2) - (integrante2.size() / 2), integrante2.c_str());
-        mvwprintw(creditos, 7, -3 + (xMAX / 2) - (integrante3.size() / 2), integrante3.c_str());
-        mvwprintw(creditos, 8, -3 + (xMAX / 2) - (integrante4.size() / 2), integrante4.c_str());
-        mvwprintw(creditos, 9, -3 + (xMAX / 2) - (integrante5.size() / 2), integrante5.c_str());
-        mvwprintw(creditos, 10, -3 + (xMAX / 2) - (integrante6.size() / 2), integrante6.c_str());
+        mvwprintw(creditos, 3, -3 + (xMAX / 2) - (integrante1.size() / 2), integrante1.c_str());
+        mvwprintw(creditos, 4, -3 + (xMAX / 2) - (integrante2.size() / 2), integrante2.c_str());
+        mvwprintw(creditos, 5, -3 + (xMAX / 2) - (integrante3.size() / 2), integrante3.c_str());
+        mvwprintw(creditos, 6, -3 + (xMAX / 2) - (integrante4.size() / 2), integrante4.c_str());
+        mvwprintw(creditos, 7, -3 + (xMAX / 2) - (integrante5.size() / 2), integrante5.c_str());
+        mvwprintw(creditos, 8, -3 + (xMAX / 2) - (integrante6.size() / 2), integrante6.c_str());
         wattroff(creditos, COLOR_PAIR(12));
         wrefresh(creditos);
 
         wattron(titulo, COLOR_PAIR(10));
 
 
-        std::string mariano1 = "            o                     o     |         |             ";
-        std::string mariano2 = ".  . .--.   ..    ._.-. .--..--.  .  .-.| .-.  .-.|             ";
-        std::string mariano3 = "|  | |  |   | \\  / (.-' |   `--.  | (   |(   )(   |            ";
-        std::string mariano4 = "`--`-'  `--' `-`'   `--''   `--'-' `-`-'`-`-'`-`-'`-            ";
+        std::string mariano1 = "           o                     o     |         |              ";
+        std::string mariano2 = ".  . .--.   .    . .-. .--..--.  .  .-.| .-.  .-.|              ";
+        std::string mariano3 = "|  | |  |  | \\  / (.-' |   `--.  | (   |(   )(   |             ";
+        std::string mariano4 = "`--` '  '  '  `'   `--'    `--'  '  `-'` `-'` `-'`-             ";
         std::string mariano5 = "                                               .                ";
         std::string mariano6 = "                 o                             |                ";
-        std::string mariano7 = ".--.--. .-.  .--..  .-.  .--. .-.    .-.. .-.  |.    ._.-. ---. ";
+        std::string mariano7 = ".--.--. .-.  .-- .  .-.  .--. .-.    .-.. .-.  |.    . .-. ---. ";
         std::string mariano8 = "|  |  |(   ) |   | (   ) |  |(   )  (   |(   ) | \\  / (.-'  .' ";
-        std::string mariano9 = "'  '  `-`-'`-' -' `-`-'`-'  `-`-'    `-`| `-'`-`- `'   `--''--- ";
-        std::string mariano10 = "                                     ._.'                       ";
+        std::string mariano9 = "'  '  ` `-'` '   '  `-'` '  ` `-'    `-`| `-'` `  `'   `--''--- ";
+        std::string mariano10= "                                     ._.'                       ";
 
         mvwprintw(titulo, 1, (xMAX / 2) - (5 + mariano9.length() / 2), mariano1.c_str());
         mvwprintw(titulo, 2, (xMAX / 2) - (5 + mariano9.length() / 2), mariano2.c_str());
@@ -140,7 +140,6 @@ printMenuSimple::printMenuSimple(WINDOW *win, const std::vector<std::string> &ch
             box(win, 0, 0);
             mvwprintw(win, ((yMAX / 2) - choices.size()) + i, (xMAX / 2) - (choices[i - 1].length() / 2), choices[i - 1].c_str());
             wattroff(win, COLOR_PAIR(i));
-
             wattron(win, COLOR_PAIR(7));
 
             mvwprintw(win, yMAX - 1, (xMAX / 2) - (aviso.length() / 2), aviso.c_str());
