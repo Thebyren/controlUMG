@@ -98,13 +98,17 @@ public:
     std::string getAlumno(int &id);
 
     std::string newPago(const Pago &a);
+    std::string delPago(int &i);
     
     std::string newCatedratico(const Catedratico &a);
     std::string delCatedratico(std::string &id);
 
     std::string newNota(const Nota &a);
+    std::string delNota(int&id);
+    
     std::string newCurso(const Curso &a);
     std::string newBoleta(const  Boleta&a);
+    std::string delBoleta(int & id);
 
     
 };

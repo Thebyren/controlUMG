@@ -1,5 +1,5 @@
 #include"../headers/manager.h"
-
+#include"../headers/managerData.h"
 
 void registros::pago::nuevo(WINDOW * win, int y, int x)
 {
@@ -13,19 +13,20 @@ void registros::pago::nuevo(WINDOW * win, int y, int x)
     wattroff(screen, COLOR_PAIR(1));
     Pago a;
     a.nombrePago = input(screen, 3,3,"ingrese el proposito del pago: ");
+    a.codigoAlumno = input(screen, 5, 3, "ingrese el codigo del alumno:" );
     try
     {
-        std::string temp = input(screen, 15, 3, "Ingresa el monto del pago: ");
+        std::string temp = input(screen, 7, 3, "ingrese el codigo de la facultad: ");
         if (!temp.empty())
         {
             temp.erase(std::remove_if(temp.begin(), temp.end(), [](char c)
                                       { return !std::isdigit(c); }),
                        temp.end());
-            a.cuotaPago= std::stoi(temp); // Convertir la cadena a un número entero
+            a.facultad= std::stoi(temp); // Convertir la cadena a un número entero
         }
         else
         {
-            a.cuotaPago = 10101010;
+            a.facultad = 101;
         }
     }
     catch (const std::invalid_argument &e)
@@ -33,6 +34,7 @@ void registros::pago::nuevo(WINDOW * win, int y, int x)
         mvwprintw(screen, y / 2, x / 2, "hubo un error");
         wrefresh(screen);
     }
+    a.cuotaPago = 800;
     manager.querryDataBase(manager.newPago(a));
 
     wrefresh(screen); // Actualiza la ventana
@@ -45,6 +47,11 @@ void registros::pago::nuevo(WINDOW * win, int y, int x)
 }
 void registros::pago::eliminar(WINDOW * win, int y, int x)
 {
+     WINDOW *screen = newwin(y, x, 0, 0);
+    SQLiteManager manager("base.db");
+    int codigo = std::stoi(input(screen, 4, 4, "ingrese el codigo del pago a borrar: "));
+    manager.querryDataBase(manager.delPago(codigo));
+    manager.closeDataBase();
     
     
 }

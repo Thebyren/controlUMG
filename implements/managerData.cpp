@@ -68,8 +68,18 @@ std::string SQLiteManager::delCatedratico(std::string &carnet){
     std::string consulta = "DELETE FROM catedraticos WHERE codigoCatedratico = '"+carnet+"' ;";
     return consulta;
 }
-
-
+std::string SQLiteManager::delPago(int &codigo){
+    std::string consulta = "DELETE FROM pagos WHERE codigopago = "+std::to_string(codigo)+";";
+    return consulta;
+}
+std::string SQLiteManager::delBoleta(int &codigo){
+    std::string consulta = "DELETE FROM boletas WHERE idBoleta = "+std::to_string(codigo)+";";
+    return consulta;
+}
+std::string SQLiteManager::delNota(int &codigo){
+    std::string consulta = "DELETE FROM boletas WHERE  idNota = "+std::to_string(codigo)+";";
+    return consulta;
+}
 std::string SQLiteManager::newCurso(const Curso& curso)
 {
     std::string consulta = "INSERT INTO cursos (codigoCurso, nombre, creditos, horario) VALUES (";
@@ -109,9 +119,8 @@ std::string SQLiteManager::newNota(const Nota& nota)
 
 std::string SQLiteManager::newPago(const Pago& pago)
 {
-    std::string consulta = "INSERT INTO pagos (codigoAlumno, codigoPago, nombrePago, facultad, cuotaPago) VALUES (";
+    std::string consulta = "INSERT INTO pagos (codigoAlumno,  nombrePago, facultad, cuotaPago) VALUES (";
     consulta += "'" + pago.codigoAlumno + "', ";
-    consulta += "'" + pago.codigoPago + "', ";
     consulta += "'" + pago.nombrePago + "', ";
     consulta += "'" + pago.facultad + "', ";
     consulta += std::to_string(pago.cuotaPago) + ");";
